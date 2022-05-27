@@ -1,6 +1,6 @@
 import db from "../db";
 
-export async function validateCategoryMiddleware(req, res){
+export async function validateCategoryMiddleware(req, res, next){
     const {name}=req.body;
 
     if(!name){
