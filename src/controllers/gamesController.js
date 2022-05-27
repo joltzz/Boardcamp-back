@@ -28,3 +28,14 @@ export async function getGames(req, res) {
         res.send(500);
     }
 }
+
+export async function addGame(req, res){
+    
+    try{
+        res.status(201);
+    }
+    catch(err){
+        console.log(err);
+        res.status(500);
+    }
+}
