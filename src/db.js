@@ -3,12 +3,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const { Pool } = pkg;
+
 const db = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
 if(process.env.MODE==="PROD"){
-  databaseConfig.ssl={
+  db.ssl={
     rejectUnauthorized: false
   }
 }
