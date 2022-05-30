@@ -1,4 +1,4 @@
-import db from "../db";
+import db from "../db.js";
 
 export async function validateCategoryMiddleware(req, res, next){
     const {name}=req.body;

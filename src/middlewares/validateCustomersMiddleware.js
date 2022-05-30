@@ -1,7 +1,7 @@
-import db from "../db";
-import customersSchema from "../schemas/customerSchema";
+import db from "../db.js";
+import customersSchema from "../schemas/customerSchema.js";
 
-export async function validadeCustomersMiddleware(req, res, next){
+export async function validateCustomersMiddleware(req, res, next){
     const validation=customersSchema.validate(req.body);
 
     if(validation.error){
@@ -10,7 +10,7 @@ export async function validadeCustomersMiddleware(req, res, next){
     next();
 }
 
-export async function validadeUpgradeCustomersMiddleware(req, res, next){
+export async function validateUpgradeCustomersMiddleware(req, res, next){
     const validation=customersSchema.validate(req.body);
 
     if(validation.error){
