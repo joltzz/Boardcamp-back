@@ -29,13 +29,30 @@ export async function getGames(req, res) {
     }
 }
 
-export async function addGame(req, res){
-    
-    try{
-        res.status(201);
+export async function addGame(req, res) {
+    try {
+    const { name, image, stockTotal, categoryId, pricePerDay } = req.body;
+  
+    const result = await db.query(`SELECT id FROM games WHERE name=$1`, [name]);
+    if (result.rows.length > 0) {
+      return res.status(409).send('Jogo já cadastrado')
     }
-    catch(err){
-        console.log(err);
-        res.status(500);
+  
+      await db.query(`
+        INSERT INTO games 
+          (name, image, "stockTotal", "categoryId", "pricePerDay") 
+        VALUES
+           ($1, $2, $3, $4, $5)`,
+        [
+          name,
+          image,
+          parseInt(stockTotal),
+          parseInt(categoryId),
+          parseInt(pricePerDay),
+        ]);
+      res.sendStatus(201);
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(500);
     }
-}
+  }

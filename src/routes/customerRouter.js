@@ -1,9 +1,12 @@
 import { Router } from "express";
-import { getCustomers, getCustomer } from "../controllers/customerController";
+import { addCustomers, getCustomer, getCustomers, updateCustomer } from "../Controllers/customersController.js";
+import { validateCustomersMiddleware, validateUpgradeCustomersMiddleware } from "../Middlewares/validateCustomersMiddleware.js";
 
-const customerRouter=Router();
+const customersRouter = Router();
 
-customerRouter.get("/customers", getCustomers);
-customerRouter.get("/customers/:id", getCustomer);
+customersRouter.get("/customers",getCustomers);
+customersRouter.get("/customers/:id", getCustomer);
+customersRouter.post("/customers", validateCustomersMiddleware, addCustomers);
+customersRouter.put("/customers/:id",validateUpgradeCustomersMiddleware ,updateCustomer);
 
-export default customerRouter;
+export default customersRouter;

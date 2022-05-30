@@ -10,6 +10,8 @@ app.use(json());
 
 app.use(router);
 
-app.listen(4000, () => {
+const port=process.env.PORT || 4000;
+
+app.listen(port, () => {
     console.log(chalk.bold.green("Abrindo servidor na porta 4000"))
 });

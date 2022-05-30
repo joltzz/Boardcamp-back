@@ -8,7 +8,7 @@ export async function getCategories(req, res) {
     console.log(error);
     res.sendStatus(500);
   }
-}
+} 
 
 export async function addCategory(req, res) {
   const { name } = req.body;
